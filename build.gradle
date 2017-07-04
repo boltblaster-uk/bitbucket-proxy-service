@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'maven-publish'
+apply plugin: 'application'
+
+group = "com.capgemini.holly"
+version = '1.0.0'
+mainClassName = 'com.capgemini.holly.bitbucket.App'
+
+
+ext { 
+    camel_version = '2.19.0'
+    slf_version = '1.7.25'
+    logback_version = '1.2.3'
+}
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    compile "com.google.guava:guava:20.0",
+            "org.apache.camel:camel-core:${camel_version}",
+            "org.apache.camel:camel-guice:${camel_version}",
+            "org.apache.camel:camel-spark-rest:${camel_version}",
+            "org.apache.camel:camel-swagger-java:${camel_version}",
+            "org.apache.camel:camel-aws:${camel_version}",
+            "org.apache.camel:camel-jackson:${camel_version}",
+            "org.slf4j:slf4j-api:${slf_version}",
+            "ch.qos.logback:logback-core:${logback_version}",
+            "ch.qos.logback:logback-classic:${logback_version}"
+
+
+    compileOnly "org.projectlombok:lombok:1.16.16"
+
+    testCompile "junit:junit:4.12",
+                "org.hamcrest:hamcrest-core:1.2.3",
+                "org.apache.camel:camel-test:${camel_version}"
+}
